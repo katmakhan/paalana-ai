@@ -3,7 +3,6 @@ import os
 import streamlit as st
 from sentence_transformers import SentenceTransformer
 import pinecone
-from dotenv import load_dotenv
 from groq import Groq
 
 # Page configuration
@@ -95,9 +94,8 @@ if 'initialized' not in st.session_state:
 @st.cache_resource
 def initialize_environment():
     """Initialize environment variables and return API keys"""
-    load_dotenv()
-    pinecone_api_key = os.getenv("PINECONE_API_KEY")
-    groq_api_key = os.getenv("GROQ_API_KEY")
+    pinecone_api_key = st.secrets["PINECONE_API_KEY"]
+    groq_api_key = st.secrets["GROQ_API_KEY"]
     
     if not pinecone_api_key or not groq_api_key:
         raise ValueError("API keys not found in environment variables")
