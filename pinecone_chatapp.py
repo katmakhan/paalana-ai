@@ -119,7 +119,7 @@ def initialize_pinecone(api_key):
     return pc.Index("paalana2")
 
 
-client=Groq(api_key=api_key)
+client=Groq(api_key=st.secrets["GROQ_API_KEY"])
 # Initialize clients with progress tracking
 try:
     progress_bar = st.progress(0, text="Initializing environment variables...")
@@ -131,7 +131,7 @@ try:
     progress_bar.progress(66, text="Initializing SentenceTransformer...")
     model = initialize_sentence_transformer()
     
-    progress_bar.progress(90, text="Initializing Groq...")
+    # progress_bar.progress(90, text="Initializing Groq...")
     # client = initialize_groq(groq_api_key)
     
     progress_bar.progress(100, text="Initialization complete!")
