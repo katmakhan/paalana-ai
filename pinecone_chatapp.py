@@ -107,7 +107,6 @@ def initialize_sentence_transformer():
     """Initialize SentenceTransformer model"""
     return SentenceTransformer('all-MiniLM-L6-v2')
 
-@st.cache_resource
 def initialize_groq(api_key):
     """Initialize Groq client"""
     return Groq(api_key=api_key)
