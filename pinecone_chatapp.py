@@ -107,10 +107,10 @@ def initialize_sentence_transformer():
     """Initialize SentenceTransformer model"""
     return SentenceTransformer('all-MiniLM-L6-v2')
 
-@st.cache_resource
-def initialize_groq(api_key):
-    """Initialize Groq client"""
-    return Groq(api_key=api_key)
+# @st.cache_resource
+# def initialize_groq(api_key):
+#     """Initialize Groq client"""
+#     return Groq(api_key=api_key)
 
 @st.cache_resource
 def initialize_pinecone(api_key):
@@ -118,6 +118,8 @@ def initialize_pinecone(api_key):
     pc=pinecone.Pinecone(api_key=api_key)
     return pc.Index("paalana2")
 
+
+client=Groq(api_key=api_key)
 # Initialize clients with progress tracking
 try:
     progress_bar = st.progress(0, text="Initializing environment variables...")
@@ -130,7 +132,7 @@ try:
     model = initialize_sentence_transformer()
     
     progress_bar.progress(90, text="Initializing Groq...")
-    client = initialize_groq(groq_api_key)
+    # client = initialize_groq(groq_api_key)
     
     progress_bar.progress(100, text="Initialization complete!")
     progress_bar.empty()
